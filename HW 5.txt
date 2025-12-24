@@ -1,0 +1,51 @@
+Week 5 Homework — Shunting Yard Algorithm (Infix to Postfix Conversion)
+
+⸻
+
+1. What is the Shunting Yard Algorithm?
+ • The Shunting Yard Algorithm is a method to convert mathematical expressions from Infix notation (like a+b) to Postfix notation (Reverse Polish Notation).
+ • It was invented by Edsger Dijkstra.
+ • The algorithm uses a stack to hold operators and parentheses during the conversion.
+
+⸻
+
+2. How does it work? (Step-by-step)
+ • Read the expression from left to right.
+ • If the token is an operand (a letter or number), add it directly to the output.
+ • If the token is an operator (such as +, -, *, /):
+ • Pop operators from the stack to the output while they have higher or equal precedence.
+ • Then push the current operator onto the stack.
+ • If the token is a left parenthesis (, push it onto the stack.
+ • If the token is a right parenthesis ), pop operators from the stack to the output until a left parenthesis ( is encountered, then discard the (.
+ • After the entire input has been read, pop any remaining operators from the stack to the output.
+
+⸻
+
+3. Example 1: a*b+c
+ • Read a → operand → output: a
+ • Read * → operator → push * on stack
+ • Read b → operand → output: ab
+ • Read + → operator:
+ • * has higher precedence → pop * to output → output: ab*
+ • push + onto stack
+ • Read c → operand → output: ab*c
+ • End of expression → pop remaining operator + → output: ab*c+
+
+⸻
+
+*4. Example 2: (a+b)c
+ • Read ( → push on stack
+ • Read a → operand → output: a
+ • Read + → operator → push + on stack
+ • Read b → operand → output: ab
+ • Read ) → pop operators until ( → pop + → output: ab+
+ • Remove ( from stack
+ • Read * → operator → push * on stack
+ • Read c → operand → output: ab+c
+ • End of expression → pop remaining operator * → output: ab+c*
+
+⸻
+
+5. Expected Output
+ • For a*b+c → ab*c+
+ • For (a+b)*c → ab+c*
